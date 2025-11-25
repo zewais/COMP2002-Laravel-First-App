@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
-    protected $fillable = ['title', 'body', 'user_id'];
+    use HasFactory; // To enable factory methods for testing and seeding 
+    protected $fillable = ['title', 'body', 'user_id']; // Mass assignable attributes 
 }

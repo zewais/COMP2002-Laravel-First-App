@@ -30,10 +30,9 @@ Route::post("/logout", [UserController::class, "logout"]);
 Route::post("/login", [UserController::class, "login"]);
 
 //Blog post creation route
-Route::post('/create-post', [PostController::class, 'create_post']);
+Route::post('/create-post', [PostController::class, 'create-post']);
 
 // Blog post deletion route
-Route::delete('/delete-post/{id}', [PostController::class, 'delete_post']);
-
+Route::delete('/delete-post/{id}', [PostController::class, 'delete-post']);
 
 ?>
