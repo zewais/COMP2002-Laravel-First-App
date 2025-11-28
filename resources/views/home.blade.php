@@ -7,7 +7,7 @@
 <body>
 
 @auth
-<p>Congrats you're logged in!</p>
+<p>Hello {{$user}}</p>
 <form action="/logout" method="post">
     @csrf
     <button>Logout</button>
@@ -31,6 +31,7 @@
             <p>{{ $post->body }}</p>
             <!-- The date format is Month day, Year, hour:minute am/pm -->
             <p>Posted on: {{ $post->created_at->format('F j, Y, g:i a') }}</p>
+            <a href="/edit-post/{{$post->id}}">Edit Post</a>
             <form action="/delete-post/{{ $post->id }}" method="POST">
                 @csrf
                 @method('DELETE')

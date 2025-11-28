@@ -25,6 +25,30 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    public function get_edit_post(Post $post){
+        if(auth()->user()->id !== $post["user_id"]){
+            return redirect("/");
+        }
+        return view("edit-post", ["post" => $post]);
+    }
+
+    public function patch_post(Post $post, Request $request){
+        if(auth()->user()->id !== $post["user_id"]){
+            return redirect("/");
+        }
+        $validatedData = $request->validate([
+            "title" => "required|string|max:255",
+            "body" => "required|string"
+        ]);
+        $validatedData["title"] = strip_tags($validatedData["title"]);
+        $validatedData["body"] = strip_tags($validatedData["body"]);
+        $validatedData["user_id"] = auth()->id();
+
+        $post->update($validatedData);
+        return redirect("/");
+
+    }
+
     public function delete_post($id)
     {
         // Find the post by ID and ensure it belongs to the authenticated user
